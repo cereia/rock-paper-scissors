@@ -10,12 +10,36 @@
 //create a function that uses the previous function to
   //keep track of the rounds played for 5 total rounds
   //returns a winner or loser after 5 rounds
-let computerChoice = ''
-let playerChoice = prompt('Rock, paper, or scissors?');
+
+//rock > scissors
+//scissors > paper
+//paper > rock
+
+let computerSelection;
+let playerSelection = prompt('Rock, paper, or scissors?') || 'rock';
 
 function getComputerChoice() {
   let options = ['rock', 'paper', 'scissors'];
   let random = Math.floor(Math.random() * 3);
-  return computerChoice = options[random];
+  return computerSelection = options[random];
 }
 
+//values from above are not being passed in correcly
+function playRound(playerSelection, computerSelection) {
+  let player = playerSelection.toLowerCase();
+
+  let message;
+  if (player == 'rock' && computerSelection == 'scissors') {
+    return message = `You Win! ${player[0].toUpperCase() + player.slice(1)} beats ${computerSelection}!`
+  } else if (player == 'scissors' && computerSelection == 'paper') {
+    return message = `You Win! ${player[0].toUpperCase() + player.slice(1)} beats ${computerSelection}!`
+  } else if(player == 'paper' && computerSelection == 'rock') {
+    return message = `You Win! ${player[0].toUpperCase() + player.slice(1)} beats ${computerSelection}!`
+  } else if (player == computerSelection) {
+    return message = `You both chose ${player} and Tied! No one wins!`
+  } else {
+    return message = `You Lose! ${computerSelection[0].toUpperCase() + computerSelection.slice(1)} beats ${player}!`
+  }
+}
+
+getComputerChoice();
