@@ -11,35 +11,62 @@
   //keep track of the rounds played for 5 total rounds
   //returns a winner or loser after 5 rounds
 
-//rock > scissors
-//scissors > paper
-//paper > rock
+// let computer;
+// let player;
+let playerPoints = 0;
+let computerPoints = 0;
 
-let computerSelection;
-let playerSelection = prompt('Rock, paper, or scissors?') || 'rock';
+let playerChoice = () => {
+  // return player = prompt('Rock, paper, or scissors?')
+  return prompt('Rock, paper, or scissors?')
+};
 
 function getComputerChoice() {
   let options = ['rock', 'paper', 'scissors'];
   let random = Math.floor(Math.random() * 3);
-  return computerSelection = options[random];
+  // return computer = options[random];
+  return options[random];
 }
 
-//values from above are not being passed in correcly
 function playRound(playerSelection, computerSelection) {
-  let player = playerSelection.toLowerCase();
-
+  let player = playerSelection().toLowerCase();
+  let computer = computerSelection().toLowerCase();
   let message;
-  if (player == 'rock' && computerSelection == 'scissors') {
-    return message = `You Win! ${player[0].toUpperCase() + player.slice(1)} beats ${computerSelection}!`
-  } else if (player == 'scissors' && computerSelection == 'paper') {
-    return message = `You Win! ${player[0].toUpperCase() + player.slice(1)} beats ${computerSelection}!`
-  } else if(player == 'paper' && computerSelection == 'rock') {
-    return message = `You Win! ${player[0].toUpperCase() + player.slice(1)} beats ${computerSelection}!`
-  } else if (player == computerSelection) {
+  if (player == 'rock' && computer == 'scissors') {
+    playerPoints += 1;
+    return message = `You Win! ${player[0].toUpperCase() + player.slice(1)} beats ${computer}!`
+  } else if (player == 'scissors' && computer == 'paper') {
+    playerPoints += 1;
+    return message = `You Win! ${player[0].toUpperCase() + player.slice(1)} beats ${computer}!`
+  } else if(player == 'paper' && computer == 'rock') {
+    playerPoints += 1;
+    return message = `You Win! ${player[0].toUpperCase() + player.slice(1)} beats ${computer}!`
+  } else if (player == computer) {
     return message = `You both chose ${player} and Tied! No one wins!`
   } else {
-    return message = `You Lose! ${computerSelection[0].toUpperCase() + computerSelection.slice(1)} beats ${player}!`
+    computerPoints += 1;
+    return message = `You Lose! ${computer[0].toUpperCase() + computer.slice(1)} beats ${player}!`
   }
 }
 
-getComputerChoice();
+//play game function has to use the previous function playRound to play 5 rounds
+//after 5 rounds, throw a message saying win, lose, or tie
+
+function playGame() {
+  let count = 0;
+  for (let i = 0; i < 5; i++) {
+    count += 1; 
+    console.log('Round: ', count, playRound(playerChoice, getComputerChoice));
+  }
+  if(playerPoints > computerPoints) {
+    console.log(`You win! You won ${playerPoints} / 5 games!`);
+  } else if (playerPoints < computerPoints) {
+    console.log(`You lose! The computer won ${computerPoints} / 5 games!`)
+  } else {
+    console.log(`It's a tie! You both won ${playerPoints} / 5 games!`);
+  }
+  playerPoints = 0;
+  computerPoints = 0;
+}
+
+playGame();
