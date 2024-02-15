@@ -1,15 +1,6 @@
 //create a function to determine the computer's choice
-//create a function that compare's the computer and player's choices
+//create a function that compares the computer and player's choices
 //create a function that determines the overall winner after 5 rounds
-
-//create a function to determine the computer's random choice of rock, paper, or scissors
-//create a function that takes the player's choice and the computer's choice
-    //2 inputs: player's choice and computers choice 
-    //function should compare the 2 inputs and give either a win or lose message
-//change player's input to case insensitive
-//create a function that uses the previous function to
-  //keep track of the rounds played for 5 total rounds
-  //returns a winner or loser after 5 rounds
 
 // let computer;
 // let player;
@@ -18,7 +9,7 @@ let computerPoints = 0;
 
 let playerChoice = () => {
   // return player = prompt('Rock, paper, or scissors?')
-  return prompt('Rock, paper, or scissors?')
+  return prompt('Rock, paper, or scissors?');
 };
 
 function getComputerChoice() {
@@ -37,18 +28,18 @@ function playRound(playerSelection, computerSelection) {
   let message;
   if (player == 'rock' && computer == 'scissors') {
     playerPoints += 1;
-    return message = `You Win! ${capP} beats ${computer}!`
+    return message = `You Win! ${capP} beats ${computer}!`;
   } else if (player == 'scissors' && computer == 'paper') {
     playerPoints += 1;
-    return message = `You Win! ${capP} beats ${computer}!`
+    return message = `You Win! ${capP} beats ${computer}!`;
   } else if(player == 'paper' && computer == 'rock') {
     playerPoints += 1;
-    return message = `You Win! ${capP} beats ${computer}!`
+    return message = `You Win! ${capP} beats ${computer}!`;
   } else if (player == computer) {
-    return message = `You both chose ${player} and Tied! No one wins!`
+    return message = `You both chose ${player} and Tied! No one wins!`;
   } else {
     computerPoints += 1;
-    return message = `You Lose! ${capC} beats ${player}!`
+    return message = `You Lose! ${capC} beats ${player}!`;
   }
 }
 
@@ -64,7 +55,7 @@ function playGame() {
   if(playerPoints > computerPoints) {
     console.log(`You win! You won ${playerPoints} / 5 games!`);
   } else if (playerPoints < computerPoints) {
-    console.log(`You lose! The computer won ${computerPoints} / 5 games!`)
+    console.log(`You lose! The computer won ${computerPoints} / 5 games!`);
   } else {
     console.log(`It's a tie! You both won ${playerPoints} / 5 games!`);
   }
