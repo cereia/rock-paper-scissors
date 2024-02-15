@@ -7,7 +7,7 @@
 let playerPoints = 0;
 let computerPoints = 0;
 
-let playerChoice = () => {
+let getPlayerChoice = () => {
   // return player = prompt('Rock, paper, or scissors?')
   return prompt('Rock, paper, or scissors?');
 };
@@ -44,10 +44,10 @@ function playRound(playerSelection, computerSelection) {
 //after 5 rounds, throw a message saying win, lose, or tie
 
 function playGame() {
-  let count = 0;
+  let round = 0;
   for (let i = 0; i < 5; i++) {
-    count += 1; 
-    console.log('Round: ', count, playRound(playerChoice, getComputerChoice));
+    round += 1; 
+    console.log('Round: ', round, playRound(getPlayerChoice, getComputerChoice));
   }
   if(playerPoints > computerPoints) {
     console.log(`You win! You won ${playerPoints} / 5 games!`);
