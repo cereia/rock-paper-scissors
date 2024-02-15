@@ -26,13 +26,10 @@ function playRound(playerSelection, computerSelection) {
   let capC = computer[0].toUpperCase() + computer.slice(1); //capitalized computer
   
   let message;
-  if (player == 'rock' && computer == 'scissors') {
-    playerPoints += 1;
-    return message = `You Win! ${capP} beats ${computer}!`;
-  } else if (player == 'scissors' && computer == 'paper') {
-    playerPoints += 1;
-    return message = `You Win! ${capP} beats ${computer}!`;
-  } else if(player == 'paper' && computer == 'rock') {
+  if ( (player == 'rock' && computer == 'scissors') 
+    || (player == 'scissors' && computer == 'paper') 
+    || (player == 'paper' && computer == 'rock')
+    ) {
     playerPoints += 1;
     return message = `You Win! ${capP} beats ${computer}!`;
   } else if (player == computer) {
