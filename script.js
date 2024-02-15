@@ -31,21 +31,24 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
   let player = playerSelection().toLowerCase();
   let computer = computerSelection().toLowerCase();
+  let capP = player[0].toUpperCase() + player.slice(1); //capitalized player
+  let capC = computer[0].toUpperCase() + computer.slice(1); //capitalized computer
+  
   let message;
   if (player == 'rock' && computer == 'scissors') {
     playerPoints += 1;
-    return message = `You Win! ${player[0].toUpperCase() + player.slice(1)} beats ${computer}!`
+    return message = `You Win! ${capP} beats ${computer}!`
   } else if (player == 'scissors' && computer == 'paper') {
     playerPoints += 1;
-    return message = `You Win! ${player[0].toUpperCase() + player.slice(1)} beats ${computer}!`
+    return message = `You Win! ${capP} beats ${computer}!`
   } else if(player == 'paper' && computer == 'rock') {
     playerPoints += 1;
-    return message = `You Win! ${player[0].toUpperCase() + player.slice(1)} beats ${computer}!`
+    return message = `You Win! ${capP} beats ${computer}!`
   } else if (player == computer) {
     return message = `You both chose ${player} and Tied! No one wins!`
   } else {
     computerPoints += 1;
-    return message = `You Lose! ${computer[0].toUpperCase() + computer.slice(1)} beats ${player}!`
+    return message = `You Lose! ${capC} beats ${player}!`
   }
 }
 
