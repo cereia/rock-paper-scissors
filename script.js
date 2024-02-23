@@ -24,9 +24,13 @@ function getComputerChoice() {
   return options[random];
 }
 
-let results = document.createElement('div');
-results.textContent = 'Click a button to play the game!'
-container.appendChild(results);
+let round = document.createElement('div');
+round.textContent = 'Click a button to play the game!'
+container.appendChild(round);
+
+let score = document.createElement('div');
+score.textContent = 'Player: 0 Computer: 0';
+container.appendChild(score);
 
 //determines a winner or loser of a round of rps
 function playRound(playerSelection, computerSelection) {
@@ -53,19 +57,19 @@ function playRound(playerSelection, computerSelection) {
     computerPoints += 1;
     message = `You Lose! ${capC} beats ${player}!`;
   }
-  results.textContent = message;
+  round.textContent = message;
+  score.textContent = `Player: ${playerPoints} Computer: ${computerPoints}`;
 }
 
 //playGame uses playRound to play 5 rounds
 //after 5 rounds, playGame compares the points and logs a message saying win, lose, or tie
 function playGame() {
-  
-  if (playerPoints > computerPoints) {
-    console.log(`You win! You won ${playerPoints} / 5 games!`);
-  } else if (playerPoints < computerPoints) {
-    console.log(`You lose! The computer won ${computerPoints} / 5 games!`);
+  if (playerPoints > computerPoints && playerPoints === 5) {
+    console.log(`You win! You won 5 times first!`);
+  } else if (playerPoints < computerPoints && computerPoints === 5) {
+    console.log(`You lost! The computer got to 5 wins first!`);
   } else {
-    console.log(`It's a tie! You both won ${playerPoints} / 5 games!`);
+    console.log('err')
   }
 
   //reset the scores for a new game
