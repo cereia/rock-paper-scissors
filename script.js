@@ -1,9 +1,20 @@
 let playerPoints = 0;
 let computerPoints = 0;
+let container = document.querySelector('#container')
 
-let getPlayerChoice = () => {
-  return prompt('Rock, paper, or scissors?');
-};
+const rock = document.createElement('button');
+const paper = document.createElement('button');
+const scissors = document.createElement('button');
+
+rock.textContent = 'Rock';
+paper.textContent = 'Paper';
+scissors.textContent = 'Scissors';
+
+rock.addEventListener('click', () => playRound(rock.textContent, getComputerChoice));
+paper.addEventListener('click', () => playRound(paper.textContent, getComputerChoice));
+scissors.addEventListener('click', () => playRound(scissors.textContent, getComputerChoice));
+
+container.append(rock, paper, scissors);
 
 //get a random option from an array of 3 options
 function getComputerChoice() {
@@ -12,19 +23,10 @@ function getComputerChoice() {
   return options[random];
 }
 
-const rock = document.createElement('button');
-const paper = document.createElement('button');
-const scissors = document.createElement('button');
-
-rock.textContent = 'Rock';
-paper.textContent = 'Paper';
-scissors.textContent = 'Scissors'
-
-
 //determines a winner or loser of a round of rps
 function playRound(playerSelection, computerSelection) {
   //get the choices and make them case insensitive 
-  let player = playerSelection().toLowerCase();
+  let player = playerSelection.toLowerCase();
   let computer = computerSelection();
 
   //capitalize the first letter of the choices
@@ -39,23 +41,19 @@ function playRound(playerSelection, computerSelection) {
     || (player == 'paper' && computer == 'rock')
     ) {
     playerPoints += 1;
-    return message = `You Win! ${capP} beats ${computer}!`;
+    message = `You Win! ${capP} beats ${computer}!`;
   } else if (player == computer) {
-    return message = `You both chose ${player} and Tied! No one wins!`;
+    message = `You both chose ${player} and Tied! No one wins!`;
   } else {
     computerPoints += 1;
-    return message = `You Lose! ${capC} beats ${player}!`;
+    message = `You Lose! ${capC} beats ${player}!`;
   }
+  console.log(message)
 }
 
 //playGame uses playRound to play 5 rounds
 //after 5 rounds, playGame compares the points and logs a message saying win, lose, or tie
 function playGame() {
-  // let round = 0;
-  // for (let i = 0; i < 5; i++) {
-  //   round += 1; 
-  //   console.log('Round: ', round, playRound(getPlayerChoice, getComputerChoice));
-  // }
   
   if (playerPoints > computerPoints) {
     console.log(`You win! You won ${playerPoints} / 5 games!`);
