@@ -10,6 +10,7 @@ rock.textContent = 'Rock';
 paper.textContent = 'Paper';
 scissors.textContent = 'Scissors';
 
+//add event listeners to automatically invoke the playRound function with the player's button choice
 rock.addEventListener('click', () => playRound(rock.textContent, getComputerChoice));
 paper.addEventListener('click', () => playRound(paper.textContent, getComputerChoice));
 scissors.addEventListener('click', () => playRound(scissors.textContent, getComputerChoice));
@@ -22,6 +23,10 @@ function getComputerChoice() {
   let random = Math.floor(Math.random() * 3);
   return options[random];
 }
+
+let results = document.createElement('div');
+results.textContent = 'Click a button to play the game!'
+container.appendChild(results);
 
 //determines a winner or loser of a round of rps
 function playRound(playerSelection, computerSelection) {
@@ -48,7 +53,7 @@ function playRound(playerSelection, computerSelection) {
     computerPoints += 1;
     message = `You Lose! ${capC} beats ${player}!`;
   }
-  console.log(message)
+  results.textContent = message;
 }
 
 //playGame uses playRound to play 5 rounds
