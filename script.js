@@ -12,6 +12,16 @@ function getComputerChoice() {
   return options[random];
 }
 
+const rock = document.createElement('button');
+const paper = document.createElement('button');
+const scissors = document.createElement('button');
+
+rock.textContent = 'Rock';
+paper.textContent = 'Paper';
+scissors.textContent = 'Scissors'
+
+
+//determines a winner or loser of a round of rps
 function playRound(playerSelection, computerSelection) {
   //get the choices and make them case insensitive 
   let player = playerSelection().toLowerCase();
@@ -39,13 +49,13 @@ function playRound(playerSelection, computerSelection) {
 }
 
 //playGame uses playRound to play 5 rounds
-//after 5 rounds, playGame compares the points logs a message saying win, lose, or tie
+//after 5 rounds, playGame compares the points and logs a message saying win, lose, or tie
 function playGame() {
-  let round = 0;
-  for (let i = 0; i < 5; i++) {
-    round += 1; 
-    console.log('Round: ', round, playRound(getPlayerChoice, getComputerChoice));
-  }
+  // let round = 0;
+  // for (let i = 0; i < 5; i++) {
+  //   round += 1; 
+  //   console.log('Round: ', round, playRound(getPlayerChoice, getComputerChoice));
+  // }
   
   if (playerPoints > computerPoints) {
     console.log(`You win! You won ${playerPoints} / 5 games!`);
