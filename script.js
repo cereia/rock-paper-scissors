@@ -68,11 +68,14 @@ scissors.addEventListener('click', playGame);
 
 const finalResult = document.createElement('h2');
 container.appendChild(finalResult);
-let winLossMessage = 'Get to 5 points first to win!';
-finalResult.textContent = winLossMessage;
+let initialMessage = 'Get to 5 points first to win!';
+finalResult.textContent = initialMessage;
 
 //reset the point values and give a final win/loss message upon reaching 5 wins
 function playGame() {
+  finalResult.textContent = initialMessage;
+  let winLossMessage;
+
   if (playerPoints === 5) {
     playerPoints = 0;
     computerPoints = 0;
