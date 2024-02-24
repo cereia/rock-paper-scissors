@@ -2,28 +2,15 @@ let playerPoints = 0;
 let computerPoints = 0;
 let container = document.querySelector('#container')
 
-let round = document.createElement('div');
+let round = document.querySelector('.round');
 round.textContent = 'Click a button to play the game!'
-container.appendChild(round);
 
-let score = document.createElement('div');
+let score = document.querySelector('.score');
 score.textContent = 'Player: 0 Computer: 0';
-container.appendChild(score);
 
-const rock = document.createElement('button');
-const paper = document.createElement('button');
-const scissors = document.createElement('button');
-
-rock.textContent = 'Rock';
-paper.textContent = 'Paper';
-scissors.textContent = 'Scissors';
-
-//add event listeners to automatically invoke the playRound function with the player's button choice
-rock.addEventListener('click', () => playRound(rock.textContent, getComputerChoice));
-paper.addEventListener('click', () => playRound(paper.textContent, getComputerChoice));
-scissors.addEventListener('click', () => playRound(scissors.textContent, getComputerChoice));
-
-container.append(rock, paper, scissors);
+const btns = document.querySelectorAll('.btn');
+btns.forEach(btn => btn.addEventListener('click', () => playRound(btn.textContent, getComputerChoice)));
+btns.forEach(btn => btn.addEventListener('click', playGame));
 
 //get a random option from an array of 3 options
 function getComputerChoice() {
@@ -61,13 +48,7 @@ function playRound(playerSelection, computerSelection) {
   score.textContent = `Player: ${playerPoints} Computer: ${computerPoints}`;
 }
 
-//add playGame to player buttons so the points can be checked to determine a game winner
-rock.addEventListener('click', playGame);
-paper.addEventListener('click', playGame);
-scissors.addEventListener('click', playGame);
-
-const finalResult = document.createElement('h2');
-container.appendChild(finalResult);
+const finalResult = document.querySelector('.final-result');
 let initialMessage = 'Get to 5 points first to win!';
 finalResult.textContent = initialMessage;
 
