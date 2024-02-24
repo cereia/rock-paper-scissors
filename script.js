@@ -2,6 +2,14 @@ let playerPoints = 0;
 let computerPoints = 0;
 let container = document.querySelector('#container')
 
+let round = document.createElement('div');
+round.textContent = 'Click a button to play the game!'
+container.appendChild(round);
+
+let score = document.createElement('div');
+score.textContent = 'Player: 0 Computer: 0';
+container.appendChild(score);
+
 const rock = document.createElement('button');
 const paper = document.createElement('button');
 const scissors = document.createElement('button');
@@ -23,14 +31,6 @@ function getComputerChoice() {
   let random = Math.floor(Math.random() * 3);
   return options[random];
 }
-
-let round = document.createElement('div');
-round.textContent = 'Click a button to play the game!'
-container.appendChild(round);
-
-let score = document.createElement('div');
-score.textContent = 'Player: 0 Computer: 0';
-container.appendChild(score);
 
 //determines a winner or loser of a round of rps
 function playRound(playerSelection, computerSelection) {
@@ -61,20 +61,27 @@ function playRound(playerSelection, computerSelection) {
   score.textContent = `Player: ${playerPoints} Computer: ${computerPoints}`;
 }
 
-//playGame uses playRound to play 5 rounds
-//after 5 rounds, playGame compares the points and logs a message saying win, lose, or tie
+//add playGame to player buttons so the points can be checked to determine a game winner
+rock.addEventListener('click', playGame);
+paper.addEventListener('click', playGame);
+scissors.addEventListener('click', playGame);
+
+const finalResult = document.createElement('h2');
+container.appendChild(finalResult);
+let winLossMessage = 'Get to 5 points first to win!';
+finalResult.textContent = winLossMessage;
+
+//reset the point values and give a final win/loss message upon reaching 5 wins
 function playGame() {
-  if (playerPoints > computerPoints && playerPoints === 5) {
-    console.log(`You win! You won 5 times first!`);
-  } else if (playerPoints < computerPoints && computerPoints === 5) {
-    console.log(`You lost! The computer got to 5 wins first!`);
-  } else {
-    console.log('err')
+  if (playerPoints === 5) {
+    playerPoints = 0;
+    computerPoints = 0;
+    winLossMessage = `You win! You got 5 points first!`;
+    finalResult.textContent = winLossMessage;
+  } else if (computerPoints === 5) {
+    playerPoints = 0;
+    computerPoints = 0;
+    winLossMessage = `You lost! The computer got 5 points first!`;
+    finalResult.textContent = winLossMessage;
   }
-
-  //reset the scores for a new game
-  playerPoints = 0;
-  computerPoints = 0;
 }
-
-playGame();
